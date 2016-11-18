@@ -17,6 +17,10 @@ PKG_PROG_PKG_CONFIG
 AX_DETECT_GIT_HEAD
 AC_SUBST(GIT_HEAD_ID)
 
+# Checking for OpenCL
+AX_CHECK_OPENCL
+AS_IF([test "X$HAS_OPENCL" = Xno],
+      [AC_MSG_ERROR([Could not find OpenCL])])
 
 dnl Is there no official way yo get the build directory?
 abs_builddir=`pwd` # ${ac_abs_builddir} 

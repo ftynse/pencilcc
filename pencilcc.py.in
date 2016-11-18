@@ -30,6 +30,7 @@ bindir='''@bindir@'''.replace('''${exec_prefix}''', exec_prefix)
 libdir='''@libdir@'''.replace('''${exec_prefix}''', exec_prefix)
 datarootdir='''@datarootdir@'''.replace('''${prefix}''', prefix)
 datadir='''@datadir@'''.replace('''${datarootdir}''',datarootdir).replace('''${prefix}''', prefix)
+opencl_libs='''@OPENCL_LIBS@'''.split()
 
 PPCG_BUILDDIR='''@PPCG_BUILDDIR@'''
 PPCG_SRCDIR='''@PPCG_SRCDIR@'''
@@ -854,7 +855,8 @@ def common_ld_args():
 			ldflags += config.ocl_utilities_cflags
 		else:
 			ldflags += config.prl_lflags
-		ldflags += ['-lOpenCL', '-lm']
+		ldflags += opencl_libs
+		ldflags += ['-lm']
 
 	if config.autorpath:
 		libpaths = extract_library_paths(ldflags)
